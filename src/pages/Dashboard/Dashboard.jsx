@@ -10,9 +10,14 @@ const useStyles = makeStyles(
     root: {
       display: 'grid',
       height: '100vh',
+      // gridTemplate: `
+      //   "logo search" 9em
+      //   "left-menu breadcrumb" 3em
+      //   "left-menu filelist" auto
+      //   / 15em auto
+      // `,
       gridTemplate: `
         "logo search" 9em
-        "left-menu breadcrumb" 3em
         "left-menu filelist" auto
         / 15em auto
       `,
@@ -20,8 +25,8 @@ const useStyles = makeStyles(
 
     // Common to all Grid Items
     gridItem: {
-      backgroundColor: '#ccc',
-      border: '1px solid #ff652f',
+      backgroundColor: '#CCC',
+      border: '1px solid #FFF',
       padding: theme.spacing(1),
     },
 
@@ -82,7 +87,7 @@ const Dashboard = props => {
       </div>
       <div className={clsx(classes.gridItem, classes.searchItem)}>SEARCH</div>
       <div className={clsx(classes.gridItem, classes.leftMenuItem)}>LEFT MENU</div>
-      <div className={clsx(classes.gridItem, classes.breadcrumbItem)}>BREADCRUMB PATH</div>
+      {/* <div className={clsx(classes.gridItem, classes.breadcrumbItem)}>BREADCRUMB PATH</div> */}
       <div className={clsx(classes.gridItem, classes.fileListItem)}>
         <CEO />
       </div>
