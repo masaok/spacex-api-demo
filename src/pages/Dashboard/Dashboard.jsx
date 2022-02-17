@@ -2,8 +2,10 @@ import clsx from 'clsx'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
-import CEO from './CEO'
 import Logo from './Logo'
+
+import CEO from './CEO'
+import Events from './Events'
 
 const useStyles = makeStyles(
   theme => ({
@@ -90,6 +92,7 @@ const Dashboard = props => {
       {/* <div className={clsx(classes.gridItem, classes.breadcrumbItem)}>BREADCRUMB PATH</div> */}
       <div className={clsx(classes.gridItem, classes.fileListItem)}>
         <CEO />
+        <Events />
       </div>
     </main>
   )
