@@ -8,7 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { ApolloProvider } from '@apollo/client'
 import { client } from './graphql/client'
 
-import Dashboard from './pages/Dashboard/Dashboard'
+import Dashboard from './pages/dashboard/Dashboard'
+import Rockets from './pages/rockets/Rockets'
 
 const theme = createTheme({})
 
@@ -30,7 +31,8 @@ const App = () => {
           <div className={classes.root}>
             <Router>
               <Routes>
-                <Route path="//*" element={<Dashboard />} />
+                {/* <Route path="/rockets" element={<Rockets />} /> */}
+                <Route path="*" element={<Dashboard />} />
               </Routes>
             </Router>
           </div>

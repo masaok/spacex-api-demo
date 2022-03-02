@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react'
+
+import { useLocation } from 'react-router-dom'
+
 import clsx from 'clsx'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
@@ -7,6 +11,8 @@ import Logo from './Logo'
 import CEO from './CEO'
 import Events from './Events'
 
+import Rockets from '../rockets/Rockets'
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -15,12 +21,12 @@ const useStyles = makeStyles(
       // gridTemplate: `
       //   "logo search" 9em
       //   "left-menu breadcrumb" 3em
-      //   "left-menu filelist" auto
+      //   "left-menu content" auto
       //   / 15em auto
       // `,
       gridTemplate: `
         "logo search" 9em
-        "left-menu filelist" auto
+        "left-menu content" auto
         / 15em auto
       `,
     },
@@ -72,15 +78,39 @@ const useStyles = makeStyles(
       // borderBottomColor: theme.palette.grey[300],
     },
 
-    fileListItem: {
-      gridArea: 'filelist',
+    contentItem: {
+      gridArea: 'content',
     },
   }),
   { name: 'Dashboard' }
 )
 
+const COMPONENTS = {
+  Events,
+  Rockets,
+}
+
 const Dashboard = props => {
   const classes = useStyles(props)
+
+  const location = useLocation()
+
+  const [contentComponent, setContentComponent] = useState('Rockets')
+
+  // const Content = 'Rockets'
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/rockets':
+        setContentComponent('Rockets')
+        break
+      default:
+        setContentComponent('Events')
+    }
+  })
+
+  const Content = COMPONENTS[contentComponent]
+  if (!Content) throw new Error(`Content Component missing: ${contentComponent}`)
 
   return (
     <main className={classes.root}>
@@ -90,9 +120,10 @@ const Dashboard = props => {
       <div className={clsx(classes.gridItem, classes.searchItem)}>SEARCH</div>
       <div className={clsx(classes.gridItem, classes.leftMenuItem)}>LEFT MENU</div>
       {/* <div className={clsx(classes.gridItem, classes.breadcrumbItem)}>BREADCRUMB PATH</div> */}
-      <div className={clsx(classes.gridItem, classes.fileListItem)}>
-        <CEO />
-        <Events />
+      <div className={clsx(classes.gridItem, classes.contentItem)}>
+        <Content />
+        {/* {/* <CEO /> */}
+        {/* <Events /> */}
       </div>
     </main>
   )
